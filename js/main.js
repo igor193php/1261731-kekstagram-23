@@ -1,17 +1,17 @@
-/*
-Случайное целое число в диапазоне, включая минимальное и максимальное.
-*/
+//Случайное целое число в диапазоне, включая минимальное и максимальное.
 function getRandomInRange(min, max) {
-  let errorMessage = "";
+  let errorMessage = '';
+  let result;
+
   if (min < 0) {
-    errorMessage = "Минимальное значение меньше нуля";
+    errorMessage = 'Минимальное значение меньше нуля';
   }
 
   if (max <= min) {
     if (errorMessage) {
-      errorMessage = errorMessage + " и больше или равно максимальному";
+      errorMessage = errorMessage + ' и больше или равно максимальному';
     } else {
-      errorMessage = "Минимальное значение больше максимального";
+      errorMessage = 'Минимальное значение больше максимального';
     }
   }
 
@@ -25,6 +25,8 @@ function getRandomInRange(min, max) {
 }
 
 function checkLengthStr(str, maxLengthForStr) {
-  lengthStr = str.length
+  return (maxLengthForStr < str.length) ? false : true;
 }
 
+getRandomInRange(2, 4);
+checkLengthStr('123', 4);
