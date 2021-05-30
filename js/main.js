@@ -1,28 +1,18 @@
 //Случайное целое число в диапазоне, включая минимальное и максимальное.
 function getRandomInRange(min, max) {
   let errorMessage = '';
-  let result;
 
   if (min < 0) {
     errorMessage = 'Минимальное значение меньше нуля';
-  }
-
-  if (max <= min) {
-    if (errorMessage) {
-      const editionMessage = ' и больше или равно максимальному';
-      errorMessage = errorMessage + editionMessage;
-    } else {
-      errorMessage = 'Минимальное значение больше максимального';
-    }
+  } else if (max <= min) {
+    errorMessage = 'Минимальное значение больше или равно максимальному';
   }
 
   if (!errorMessage) {
-    result = Math.floor(Math.random() * (max - min + 1)) + min;
-  } else {
-    result = errorMessage;
+    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-  return result;
+  window.console.error(errorMessage);
 }
 
 //Функция для проверки максимальной длины строки
