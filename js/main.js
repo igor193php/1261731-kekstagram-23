@@ -9,7 +9,8 @@ function getRandomInRange(min, max) {
 
   if (max <= min) {
     if (errorMessage) {
-      errorMessage = errorMessage + ' и больше или равно максимальному';
+      const editionMessage = ' и больше или равно максимальному';
+      errorMessage = errorMessage + editionMessage;
     } else {
       errorMessage = 'Минимальное значение больше максимального';
     }
@@ -24,9 +25,16 @@ function getRandomInRange(min, max) {
   return result;
 }
 
+//Функция для проверки максимальной длины строки
 function checkLengthStr(str, maxLengthForStr) {
-  return (maxLengthForStr < str.length) ? false : true;
+  let result = true;
+
+  if (maxLengthForStr < str.length) {
+    result = false;
+  }
+
+  return result;
 }
 
-getRandomInRange(2, 4);
-checkLengthStr('123', 4);
+getRandomInRange(-2, -2);
+checkLengthStr('123', 2);
