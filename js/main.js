@@ -34,7 +34,7 @@ const MIN_NUMBER_FOR_GENERATION_ITEMS = 1;
 const MAX_NUMVER_FOR_GENERATION_ITEMS = 25;
 const MIN_NUMBER_FOR_LIKES = 15;
 const MAX_NUMBER_FOR_LIKES = 200;
-const idNumber = 1;
+let idNumber = 1;
 
 const DESCRIPTONS_FOR_PHOTO = [
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In egestas.',
@@ -105,8 +105,8 @@ const getRandomArrayElement = (elements) => elements[getRandomInRange(0, element
 
 const createPhoto = () =>
   ({
-    id: idNumber,
-    url: 'photos/' + getRandomInRange(MIN_NUMBER_FOR_GENERATION_ITEMS, MAX_NUMVER_FOR_GENERATION_ITEMS) + '.jpg',
+    id: idNumber++,
+    url: `photos/${getRandomInRange(MIN_NUMBER_FOR_GENERATION_ITEMS, MAX_NUMVER_FOR_GENERATION_ITEMS)}.jpg`,
     description: getRandomArrayElement(DESCRIPTONS_FOR_PHOTO),
     likes: getRandomInRange(MIN_NUMBER_FOR_LIKES, MAX_NUMBER_FOR_LIKES),
     comments: [
@@ -114,10 +114,11 @@ const createPhoto = () =>
         id: idNumber,
         name: getRandomArrayElement(USERS),
         message: getRandomArrayElement(MESSAGES_USERS),
-        avatar: 'img/avatar-' + getRandomInRange(MIN_NUMBER_FOR_GENERATION_ITEMS, MAX_NUMVER_FOR_GENERATION_ITEMS) + '.svg',
+        avatar: `img/avatar-${getRandomInRange(MIN_NUMBER_FOR_GENERATION_ITEMS, MAX_NUMVER_FOR_GENERATION_ITEMS)}.svg`,
       },
     ],
   });
 
 const similarPhotos = new Array(MAX_NUMVER_FOR_GENERATION_ITEMS).fill(null).map(() => createPhoto());
 
+window.console.log(similarPhotos);
