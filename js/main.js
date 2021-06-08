@@ -97,16 +97,12 @@ function checkLengthStr(str, maxLengthForStr) {
   return result;
 }
 
-
-getRandomInRange(-2, -2);
-checkLengthStr('123', 2);
-
 let idPhoto = 1;
 let idComment = 1;
 let numberFilePhoto = 1;
 const getRandomArrayElement = (elements) => elements[getRandomInRange(0, elements.length - 1)];
 
-const creatComments = () =>
+const creatComment = () =>
   ({
     id: idComment++,
     name: getRandomArrayElement(USERS),
@@ -120,9 +116,11 @@ const createPhoto = () =>
     url: `photos/${numberFilePhoto++}.jpg`,
     description: getRandomArrayElement(DESCRIPTONS_PHOTO),
     likes: getRandomInRange(MIN_LIKES, MAX_LIKES),
-    comments: new Array(getRandomInRange(MIN_GENERATION_ITEMS, MAX_GENERATION_ITEMS)).fill(null).map(() => creatComments()),
+    comments: new Array(getRandomInRange(MIN_GENERATION_ITEMS, MAX_GENERATION_ITEMS)).fill(null).map(() => creatComment()),
   });
 
 const similarPhotos = new Array(MAX_GENERATION_ITEMS).fill(null).map(() => createPhoto());
 
 window.console.log(similarPhotos);
+
+checkLengthStr('123', 2);
