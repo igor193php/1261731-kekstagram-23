@@ -1,42 +1,10 @@
-//Случайное целое число в диапазоне, включая минимальное и максимальное.
-function getRandomInRange(min, max) {
-  let errorMessage = '';
+const MIN_GENERATION_ITEMS = 1;
+const MAX_GENERATION_ITEMS = 25;
+const MAX_AVATAR = 6;
+const MIN_LIKES = 15;
+const MAX_LIKES = 200;
 
-  if (min < 0) {
-    errorMessage = 'Минимальное значение меньше нуля';
-  } else if (max <= min) {
-    errorMessage = 'Минимальное значение больше или равно максимальному';
-  }
-
-  if (!errorMessage) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
-
-  window.console.error(errorMessage);
-}
-
-//Функция для проверки максимальной длины строки
-function checkLengthStr(str, maxLengthForStr) {
-  let result = true;
-
-  if (maxLengthForStr < str.length) {
-    result = false;
-  }
-
-  return result;
-}
-
-
-getRandomInRange(-2, -2);
-checkLengthStr('123', 2);
-
-const MIN_NUMBER_FOR_GENERATION_ITEMS = 1;
-const MAX_NUMVER_FOR_GENERATION_ITEMS = 25;
-const MIN_NUMBER_FOR_LIKES = 15;
-const MAX_NUMBER_FOR_LIKES = 200;
-let idNumber = 1;
-
-const DESCRIPTONS_FOR_PHOTO = [
+const DESCRIPTONS_PHOTO = [
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In egestas.',
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer in.',
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum.',
@@ -100,25 +68,61 @@ const USERS = [
   'user25',
 ];
 
+
+//Случайное целое число в диапазоне, включая минимальное и максимальное.
+function getRandomInRange(min, max) {
+  let errorMessage = '';
+
+  if (min < 0) {
+    errorMessage = 'Минимальное значение меньше нуля';
+  } else if (max <= min) {
+    errorMessage = 'Минимальное значение больше или равно максимальному';
+  }
+
+  if (!errorMessage) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  window.console.error(errorMessage);
+}
+
+//Функция для проверки максимальной длины строки
+function checkLengthStr(str, maxLengthForStr) {
+  let result = true;
+
+  if (maxLengthForStr < str.length) {
+    result = false;
+  }
+
+  return result;
+}
+
+
+getRandomInRange(-2, -2);
+checkLengthStr('123', 2);
+
+let idPhoto = 1;
+let idComment = 1;
+let numberFilePhoto = 1;
 const getRandomArrayElement = (elements) => elements[getRandomInRange(0, elements.length - 1)];
 
+const creatComments = () =>
+  ({
+    id: idComment++,
+    name: getRandomArrayElement(USERS),
+    message: getRandomArrayElement(MESSAGES_USERS),
+    avatar: `img/avatar-${getRandomInRange(MIN_GENERATION_ITEMS, MAX_AVATAR)}.svg`,
+  });
 
 const createPhoto = () =>
   ({
-    id: idNumber++,
-    url: `photos/${getRandomInRange(MIN_NUMBER_FOR_GENERATION_ITEMS, MAX_NUMVER_FOR_GENERATION_ITEMS)}.jpg`,
-    description: getRandomArrayElement(DESCRIPTONS_FOR_PHOTO),
-    likes: getRandomInRange(MIN_NUMBER_FOR_LIKES, MAX_NUMBER_FOR_LIKES),
-    comments: [
-      {
-        id: idNumber,
-        name: getRandomArrayElement(USERS),
-        message: getRandomArrayElement(MESSAGES_USERS),
-        avatar: `img/avatar-${getRandomInRange(MIN_NUMBER_FOR_GENERATION_ITEMS, MAX_NUMVER_FOR_GENERATION_ITEMS)}.svg`,
-      },
-    ],
+    id: idPhoto++,
+    url: `photos/${numberFilePhoto++}.jpg`,
+    description: getRandomArrayElement(DESCRIPTONS_PHOTO),
+    likes: getRandomInRange(MIN_LIKES, MAX_LIKES),
+    comments: new Array(getRandomInRange(MIN_GENERATION_ITEMS, MAX_GENERATION_ITEMS)).fill(null).map(() => creatComments()),
   });
 
-const similarPhotos = new Array(MAX_NUMVER_FOR_GENERATION_ITEMS).fill(null).map(() => createPhoto());
+const similarPhotos = new Array(MAX_GENERATION_ITEMS).fill(null).map(() => createPhoto());
 
 window.console.log(similarPhotos);
