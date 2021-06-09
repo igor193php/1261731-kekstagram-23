@@ -1,3 +1,5 @@
+import {getRandomInRange, getRandomArrayElement} from './util.js';
+
 const createData = () => {
   const MIN_GENERATION_ITEMS = 1;
   const MAX_GENERATION_ITEMS = 25;
@@ -69,27 +71,9 @@ const createData = () => {
     'user25',
   ];
 
-  //Случайное целое число в диапазоне, включая минимальное и максимальное.
-  function getRandomInRange(min, max) {
-    let errorMessage = '';
-
-    if (min < 0) {
-      errorMessage = 'Минимальное значение меньше нуля';
-    } else if (max <= min) {
-      errorMessage = 'Минимальное значение больше или равно максимальному';
-    }
-
-    if (!errorMessage) {
-      return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
-
-    window.console.error(errorMessage);
-  }
-
   let idPhoto = 1;
   let idComment = 1;
   let numberFilePhoto = 1;
-  const getRandomArrayElement = (elements) => elements[getRandomInRange(0, elements.length - 1)];
 
   const createComment = () =>
     ({
