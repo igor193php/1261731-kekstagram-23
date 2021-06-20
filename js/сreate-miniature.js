@@ -1,7 +1,8 @@
-const createMiniature = (data) => {
 
-  const pictureTemplate = document.querySelector('#picture').content;
-  const pictureElement = pictureTemplate.querySelector('.picture');
+const pictureTemplate = document.querySelector('#picture').content;
+const pictureElement = pictureTemplate.querySelector('.picture');
+
+const createMiniature = (data) => {
 
   const element = pictureElement.cloneNode(true);
   element.querySelector('.picture__img').setAttribute('src', data.url);
