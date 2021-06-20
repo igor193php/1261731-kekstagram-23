@@ -11,6 +11,3 @@ for (let i = 0; i < data.length; i++) {
 }
 
 picturesElement.appendChild(fragment);
-
-window.console.log(createData());
-window.console.log(createMiniature());
