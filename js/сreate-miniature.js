@@ -8,13 +8,11 @@ const createMiniature = () => {
   const pictureElement = pictureTemplate.querySelector('.picture');
   const fragment = document.createDocumentFragment();
 
-  const pictureInfoElement = pictureElement.querySelector('.picture__info');
-
   for (let ind = 0; ind < data.length; ind++) {
     const element = pictureElement.cloneNode(true);
-    element.querySelector('.picture__img').setAttribute('src', data[0].url);
-    element.querySelector('.picture__likes').textContent = data[0].likes;
-    element.querySelector('.picture__comments').textContent = data[0].comments.length;
+    element.querySelector('.picture__img').setAttribute('src', data[ind].url);
+    element.querySelector('.picture__likes').textContent = data[ind].likes;
+    element.querySelector('.picture__comments').textContent = data[ind].comments.length;
     fragment.appendChild(element);
   }
 
