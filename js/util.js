@@ -30,4 +30,10 @@ const getRandomArrayElement = (elements) => elements[getRandomInRange(0, element
 
 checkLengthStr('123', 2);
 
-export {checkLengthStr, getRandomInRange, getRandomArrayElement};
+const closeWindow = (nameClass) => {
+  document.querySelector(nameClass).classList.add('hidden');
+  document.body.classList.remove('modal-open');
+};
+
+
+export {checkLengthStr, getRandomInRange, getRandomArrayElement, closeWindow};
