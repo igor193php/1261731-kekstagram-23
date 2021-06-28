@@ -30,10 +30,6 @@ const getRandomArrayElement = (elements) => elements[getRandomInRange(0, element
 
 checkLengthStr('123', 2);
 
-const closeWindow = (nameClass) => {
-  document.querySelector(nameClass).classList.add('hidden');
-  document.body.classList.remove('modal-open');
-};
+const isEscEvent = (evt) => {evt.key === 'Escape' || evt.key === 'Esc';};
 
-
-export {checkLengthStr, getRandomInRange, getRandomArrayElement, closeWindow};
+export {checkLengthStr, getRandomInRange, getRandomArrayElement, isEscEvent};
