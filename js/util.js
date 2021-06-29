@@ -32,4 +32,6 @@ checkLengthStr('123', 2);
 
 const isEscEvent = (evt) => {evt.key === 'Escape' || evt.key === 'Esc';};
 
-export {checkLengthStr, getRandomInRange, getRandomArrayElement, isEscEvent};
+const regExp = (regValue) => {new RegExp(regValue);};
+
+export {checkLengthStr, getRandomInRange, getRandomArrayElement, isEscEvent, regExp};
