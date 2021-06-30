@@ -48,18 +48,34 @@ uploadCancelElement.addEventListener('click', () => {
   closeWindow();
 });
 
-
-const HASH_TAG = '^#';
-const REG_FULL = '^#[A-Za-zA-Яа-я0-9]{1,19}$';
 const MAX_TEXT_LENGTH = 140;
+const MAX_TEG_LENGTH = 20;
+const SINGS = ['#', '@', '$', '-', ',', '.', ';'];
 
 
 textHashtagsElement.addEventListener('input', () => {
   const valueTextHashtags = textHashtagsElement.value;
+  const arrayTages = valueTextHashtags.split(' ');
 
-  if (!regExp(HASH_TAG).test(valueTextHashtags)) {
-    textHashtagsElement.setCustomValidity('Начните с #');
-  }
+  arrayTages.forEach((item) => {
+    if (item.length > MAX_TEG_LENGTH) {
+      textHashtagsElement.setCustomValidity(`Удалите лишние ${ item.length - MAX_TEXT_LENGTH } симв.`);
+    }
+
+    if (!item.includes('#')) {
+      textHashtagsElement.setCustomValidity('Начните с #');
+    }
+
+    if (item.substring(1, 3) === '') {
+      textHashtagsElement.setCustomValidity('Тег не должен состоять только из #');
+    }
+
+    SINGS.forEach((item1) => {
+      if (item.includes(item1, 2)) {
+        textHashtagsElement.setCustomValidity(`Название содержит ${item1} симв.`);
+      }
+    });
+  });
 
   textHashtagsElement.reportValidity();
 });

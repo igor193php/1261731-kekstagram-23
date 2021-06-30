@@ -30,8 +30,8 @@ const getRandomArrayElement = (elements) => elements[getRandomInRange(0, element
 
 checkLengthStr('123', 2);
 
-const isEscEvent = (evt) => {evt.key === 'Escape' || evt.key === 'Esc';};
+const isEscEvent = (evt) => evt.key === 'Escape' || evt.key === 'Esc';
 
-const regExp = (regValue) => {new RegExp(regValue);};
+const regExp = (regValue) => new RegExp(regValue);
 
 export {checkLengthStr, getRandomInRange, getRandomArrayElement, isEscEvent, regExp};
