@@ -50,6 +50,7 @@ uploadCancelElement.addEventListener('click', () => {
 
 const MAX_TEXT_LENGTH = 140;
 const MAX_TEG_LENGTH = 20;
+const MAX_TEGS = 5;
 const SINGS = ['#', '@', '$', '-', ',', '.', ';'];
 
 
@@ -59,22 +60,24 @@ textHashtagsElement.addEventListener('input', () => {
 
   arrayTages.forEach((item) => {
     if (item.length > MAX_TEG_LENGTH) {
-      textHashtagsElement.setCustomValidity(`Удалите лишние ${ item.length - MAX_TEXT_LENGTH } симв.`);
-    }
-
-    if (!item.includes('#')) {
+      textHashtagsElement.setCustomValidity(`Удалите лишние ${ item.length - MAX_TEG_LENGTH } симв.`);
+    } else if (!item.includes('#')) {
       textHashtagsElement.setCustomValidity('Начните с #');
-    }
-
-    if (item.substring(1, 3) === '') {
+    } else if (item.substring(1, 3) === '') {
       textHashtagsElement.setCustomValidity('Тег не должен состоять только из #');
+    } else if (!regExp('^#[A-Za-zА-Яа-я0-9]{1, 19}$').test(item)) {
+      textHashtagsElement.setCustomValidity('Название содержит симв.');
+    } else if (arrayTages.length > 5) {
+      textHashtagsElement.setCustomValidity('тегов не д.б больше 5');
+    } else {
+      textHashtagsElement.setCustomValidity('');
     }
 
-    SINGS.forEach((item1) => {
-      if (item.includes(item1, 2)) {
-        textHashtagsElement.setCustomValidity(`Название содержит ${item1} симв.`);
-      }
-    });
+    // SINGS.forEach((item1) => {
+    //   if (item.includes(item1, 2)) {
+    //     textHashtagsElement.setCustomValidity(`Название содержит ${item1} симв.`);
+    //   }
+    // });
   });
 
   textHashtagsElement.reportValidity();
