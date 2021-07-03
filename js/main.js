@@ -56,7 +56,18 @@ const SINGS = ['#', '@', '$', '-', ',', '.', ';'];
 
 textHashtagsElement.addEventListener('input', () => {
   const valueTextHashtags = textHashtagsElement.value;
-  const arrayTages = valueTextHashtags.split(' ');
+  let arrayTages = valueTextHashtags.split(' ');
+  arrayTages = arrayTages.map(function (x) {
+    return x.toUpperCase();
+  });
+
+  for (let i = 0; i < arrayTages.length; i++) {
+    if (arrayTages[i + 1] === arrayTages[i]) {
+      textHashtagsElement.setCustomValidity('дубликат');
+    } else {
+      textHashtagsElement.setCustomValidity('');
+    }
+  }
 
   arrayTages.forEach((item) => {
     if (item.length > MAX_TEG_LENGTH) {
@@ -84,7 +95,6 @@ textHashtagsElement.addEventListener('input', () => {
 });
 
 textDescriptionElement.addEventListener('input', (evt) => {
-  evt.stopPropagation();
   const valueTextDescriptionLength = textDescriptionElement.value.length;
 
   if (valueTextDescriptionLength > MAX_TEXT_LENGTH) {
@@ -92,4 +102,12 @@ textDescriptionElement.addEventListener('input', (evt) => {
   }
 
   textDescriptionElement.reportValidity();
+});
+
+textDescriptionElement.addEventListener('keydown', (evt) => {
+  evt.stopPropagation();
+});
+
+textHashtagsElement.addEventListener('keydown', (evt) => {
+  evt.stopPropagation();
 });
