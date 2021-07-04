@@ -51,23 +51,11 @@ uploadCancelElement.addEventListener('click', () => {
 const MAX_TEXT_LENGTH = 140;
 const MAX_TEG_LENGTH = 20;
 const MAX_TEGS = 5;
-const SINGS = ['#', '@', '$', '-', ',', '.', ';'];
-
 
 textHashtagsElement.addEventListener('input', () => {
   const valueTextHashtags = textHashtagsElement.value;
   let arrayTages = valueTextHashtags.split(' ');
-  arrayTages = arrayTages.map(function (x) {
-    return x.toUpperCase();
-  });
-
-  for (let i = 0; i < arrayTages.length; i++) {
-    if (arrayTages[i + 1] === arrayTages[i]) {
-      textHashtagsElement.setCustomValidity('дубликат');
-    } else {
-      textHashtagsElement.setCustomValidity('');
-    }
-  }
+  arrayTages = arrayTages.map((x) => x.toUpperCase());
 
   arrayTages.forEach((item) => {
     if (item.length > MAX_TEG_LENGTH) {
@@ -76,25 +64,21 @@ textHashtagsElement.addEventListener('input', () => {
       textHashtagsElement.setCustomValidity('Начните с #');
     } else if (item.substring(1, 3) === '') {
       textHashtagsElement.setCustomValidity('Тег не должен состоять только из #');
-    } else if (!regExp('^#[A-Za-zА-Яа-я0-9]{1, 19}$').test(item)) {
-      textHashtagsElement.setCustomValidity('Название содержит симв.');
-    } else if (arrayTages.length > 5) {
+    } else if (!regExp('^#[A-Za-zА-Яа-я0-9]{1,19}$').test(item)) {
+      textHashtagsElement.setCustomValidity('Название содержит недопустимые символы');
+    } else if (arrayTages.length > MAX_TEGS) {
       textHashtagsElement.setCustomValidity('тегов не д.б больше 5');
+    } else if (arrayTages.indexOf(item, 0)) {
+      textHashtagsElement.setCustomValidity('Тег дублируется');
     } else {
       textHashtagsElement.setCustomValidity('');
     }
-
-    // SINGS.forEach((item1) => {
-    //   if (item.includes(item1, 2)) {
-    //     textHashtagsElement.setCustomValidity(`Название содержит ${item1} симв.`);
-    //   }
-    // });
   });
 
   textHashtagsElement.reportValidity();
 });
 
-textDescriptionElement.addEventListener('input', (evt) => {
+textDescriptionElement.addEventListener('input', () => {
   const valueTextDescriptionLength = textDescriptionElement.value.length;
 
   if (valueTextDescriptionLength > MAX_TEXT_LENGTH) {
