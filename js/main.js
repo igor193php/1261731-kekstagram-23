@@ -68,7 +68,7 @@ textHashtagsElement.addEventListener('input', () => {
       textHashtagsElement.setCustomValidity('Название содержит недопустимые символы');
     } else if (arrayTages.length > MAX_TEGS) {
       textHashtagsElement.setCustomValidity('тегов не д.б больше 5');
-    } else if (arrayTages.indexOf(item, 0)) {
+    } else if (arrayTages.includes(item, 0)) {
       textHashtagsElement.setCustomValidity('Тег дублируется');
     } else {
       textHashtagsElement.setCustomValidity('');
