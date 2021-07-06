@@ -1,12 +1,12 @@
-const MAX_TEXT_LENGTH = 140;
-const MAX_TAG_LENGTH = 20;
-const MAX_TAGS_AMOUNT = 5;
-
 import {createData} from './create-data.js';
 import {createMiniature} from './сreate-miniature.js';
 import {createForm} from './create-form.js';
 import {isEscEvent} from './util.js';
 import {regExp} from './util.js';
+
+const MAX_TEXT_LENGTH = 140;
+const MAX_TAG_LENGTH = 20;
+const MAX_TAGS_AMOUNT = 5;
 
 const data = createData();
 const picturesElement = document.querySelector('.pictures');
@@ -49,7 +49,7 @@ textHashtagsElement.addEventListener('input', () => {
   let tags = valueTextHashtags.split(' ');
   tags = tags.map((x) => x.toUpperCase());
 
-  tags.forEach((item) => {
+  tags.forEach((item, i) => {
     if (item.length > MAX_TAG_LENGTH) {
       textHashtagsElement.setCustomValidity(`Удалите лишние ${ item.length - MAX_TAG_LENGTH } симв.`);
     } else if (!item.includes('#')) {
@@ -60,7 +60,7 @@ textHashtagsElement.addEventListener('input', () => {
       textHashtagsElement.setCustomValidity('Название содержит недопустимые символы');
     } else if (tags.length > MAX_TAGS_AMOUNT) {
       textHashtagsElement.setCustomValidity('тегов не д.б больше 5');
-    } else if (tags.includes(item, 1)) {
+    } else if (tags[--i] === item) {
       textHashtagsElement.setCustomValidity('Тег дублируется');
     } else {
       textHashtagsElement.setCustomValidity('');
