@@ -49,23 +49,29 @@ textHashtagsElement.addEventListener('input', () => {
   let tags = valueTextHashtags.split(' ');
   tags = tags.map((x) => x.toUpperCase());
 
-  tags.forEach((item, i) => {
-    if (item.length > MAX_TAG_LENGTH) {
-      textHashtagsElement.setCustomValidity(`Удалите лишние ${ item.length - MAX_TAG_LENGTH } симв.`);
-    } else if (!item.includes('#')) {
+  for (let i = 0; i < tags.length; i++) {
+    if (tags[i].length > MAX_TAG_LENGTH) {
+      textHashtagsElement.setCustomValidity(`Удалите лишние ${ tags[i].length - MAX_TAG_LENGTH } симв.`);
+      break;
+    } else if (!tags[i].includes('#')) {
       textHashtagsElement.setCustomValidity('Начните с #');
-    } else if (item === '#') {
+      break;
+    } else if (tags[i] === '#') {
       textHashtagsElement.setCustomValidity('Тег не должен состоять только из #');
-    } else if (!regExp('^#[A-Za-zА-Яа-я0-9]{1,19}$').test(item)) {
+      break;
+    } else if (!regExp('^#[A-Za-zА-Яа-я0-9]{1,19}$').test(tags[i])) {
       textHashtagsElement.setCustomValidity('Название содержит недопустимые символы');
+      break;
     } else if (tags.length > MAX_TAGS_AMOUNT) {
       textHashtagsElement.setCustomValidity('тегов не д.б больше 5');
-    } else if (tags[--i] === item) {
-      textHashtagsElement.setCustomValidity('Тег дублируется');
+      break;
+    } else if (tags.includes(tags[i], i + 1)) {
+      textHashtagsElement.setCustomValidity('Тег дублируется с');
+      break;
     } else {
       textHashtagsElement.setCustomValidity('');
     }
-  });
+  }
 
   textHashtagsElement.reportValidity();
 });
