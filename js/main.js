@@ -3,6 +3,7 @@ import {createMiniature} from './сreate-miniature.js';
 import {createForm} from './create-form.js';
 import {isEscEvent} from './util.js';
 import {regExp} from './util.js';
+import {changeScale} from './change-scale.js';
 
 const MAX_TEXT_LENGTH = 140;
 const MAX_TAG_LENGTH = 20;
@@ -16,6 +17,8 @@ const uploadCancelElement = document.querySelector('#upload-cancel');
 const imgUploadOverlayElement = document.querySelector('.img-upload__overlay');
 const textHashtagsElement = document.querySelector('.text__hashtags');
 const textDescriptionElement = document.querySelector('.text__description');
+const scaleControlSmallerElement = document.querySelector('.scale__control--smaller');
+const scaleControlBiggerElement = document.querySelector('.scale__control--bigger');
 
 for (let i = 0; i < data.length; i++) {
   const element = createMiniature(data[i]);
@@ -100,4 +103,12 @@ uploadFileElement.addEventListener('change', () => {
 
 uploadCancelElement.addEventListener('click', () => {
   closeWindow();
+});
+
+scaleControlSmallerElement.addEventListener('click', () => {
+  console.log(changeScale(0));
+});
+
+scaleControlBiggerElement.addEventListener('click', () => {
+  console.log(changeScale(1));
 });
