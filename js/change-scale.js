@@ -16,8 +16,6 @@ const changeScale = (typeButton) => {
     valueScaleNew = valueScaleNew - INTERVAL_SCALE;
   }
 
-  valueScaleNew = valueScaleNew + '%';
-
   return valueScaleNew;
 };
 
