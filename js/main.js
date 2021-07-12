@@ -5,6 +5,8 @@ import {isEscEvent} from './util.js';
 import {regExp} from './util.js';
 import {changeScale} from './change-scale.js';
 import {changeTranformImg} from './change-tranform-img.js';
+import {createSlider} from './create-slider.js';
+createSlider();
 
 const MAX_TEXT_LENGTH = 140;
 const MAX_TAG_LENGTH = 20;
