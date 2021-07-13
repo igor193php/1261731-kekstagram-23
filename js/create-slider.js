@@ -1,5 +1,5 @@
 const createSlider = () => {
-  const sliderElement = document.querySelector('.img-upload__effect-level');
+  const sliderElement = document.querySelector('.effect-level__slider');
   const valueElement = document.querySelector('.effect-level__value');
 
   noUiSlider.create(sliderElement, {
