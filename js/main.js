@@ -6,6 +6,7 @@ import {regExp} from './util.js';
 import {changeScale} from './change-scale.js';
 import {changeTranformImg} from './change-tranform-img.js';
 import {createSlider} from './create-slider.js';
+import {filterChangeHandler} from './filter-change-handler.js';
 createSlider();
 
 const MAX_TEXT_LENGTH = 140;
@@ -22,6 +23,7 @@ const textHashtagsElement = document.querySelector('.text__hashtags');
 const textDescriptionElement = document.querySelector('.text__description');
 const scaleControlSmallerElement = document.querySelector('.scale__control--smaller');
 const scaleControlBiggerElement = document.querySelector('.scale__control--bigger');
+const effectsListElement = document.querySelector('.effects__list');
 
 for (let i = 0; i < data.length; i++) {
   const element = createMiniature(data[i]);
@@ -117,3 +119,5 @@ scaleControlBiggerElement.addEventListener('click', () => {
   const scaleValueNew = changeScale(1);
   changeTranformImg(scaleValueNew);
 });
+
+effectsListElement.addEventListener('change', filterChangeHandler);
