@@ -1,3 +1,5 @@
+import { addFilterImg } from './add-filter-img.js';
+
 const EFFECTS = {
   'chrome': 'effects__preview--chrome',
   'sepia': 'effects__preview--sepia',
@@ -12,8 +14,10 @@ const imgUploadPreviewElement = document.querySelector('.img-upload__preview img
 const filterChangeHandler = (evt) => {
   if (evt.target.matches('input[type="radio"]')) {
     const className = imgUploadPreviewElement.className;
+    console.log(className);
     if (className) {
       imgUploadPreviewElement.classList.remove(className);
+      addFilterImg(className);
     }
 
     const tageEffect = EFFECTS[evt.target.value];

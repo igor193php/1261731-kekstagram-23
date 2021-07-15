@@ -7,7 +7,7 @@ import {changeScale} from './change-scale.js';
 import {changeTranformImg} from './change-tranform-img.js';
 import {createSlider} from './create-slider.js';
 import {filterChangeHandler} from './filter-change-handler.js';
-createSlider();
+
 
 const MAX_TEXT_LENGTH = 140;
 const MAX_TAG_LENGTH = 20;
@@ -24,6 +24,8 @@ const textDescriptionElement = document.querySelector('.text__description');
 const scaleControlSmallerElement = document.querySelector('.scale__control--smaller');
 const scaleControlBiggerElement = document.querySelector('.scale__control--bigger');
 const effectsListElement = document.querySelector('.effects__list');
+
+createSlider();
 
 for (let i = 0; i < data.length; i++) {
   const element = createMiniature(data[i]);
