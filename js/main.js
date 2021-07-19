@@ -1,5 +1,6 @@
 import {createData} from './create-data.js';
 import {createMiniature} from './сreate-miniature.js';
+import {createBigImage} from './create-big-image.js';
 
 const data = createData();
 const picturesElement = document.querySelector('.pictures');
@@ -11,3 +12,5 @@ for (let i = 0; i < data.length; i++) {
 }
 
 picturesElement.appendChild(fragment);
+
+picturesElement.addEventListener('click', createBigImage);
