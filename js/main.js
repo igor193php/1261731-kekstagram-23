@@ -6,6 +6,7 @@ const data = createData();
 const picturesElement = document.querySelector('.pictures');
 const bigPictureCancelButtonElement = document.querySelector('.big-picture__cancel');
 const fragment = document.createDocumentFragment();
+const bigPictureElement = document.querySelector('.big-picture');
 
 for (let i = 0; i < data.length; i++) {
   const element = createMiniature(data[i]);
@@ -16,5 +17,6 @@ picturesElement.appendChild(fragment);
 
 picturesElement.addEventListener('click', createBigImage);
 bigPictureCancelButtonElement.addEventListener('click', () => {
-
+  bigPictureElement.classList.add('hidden');
+  document.body.classList.remove('modal-open');
 });
