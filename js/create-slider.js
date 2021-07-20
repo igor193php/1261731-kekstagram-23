@@ -14,6 +14,7 @@ const createSlider = () => {
 
   sliderElement.noUiSlider.on('update', (_, handle, unencoded) => {
     valueElement.value = unencoded[handle];
+    console.log(valueElement.value);
   });
 };
 
