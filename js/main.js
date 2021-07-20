@@ -4,6 +4,7 @@ import {createBigImage} from './create-big-image.js';
 
 const data = createData();
 const picturesElement = document.querySelector('.pictures');
+const bigPictureCancelButtonElement = document.querySelector('.big-picture__cancel');
 const fragment = document.createDocumentFragment();
 
 for (let i = 0; i < data.length; i++) {
@@ -14,3 +15,6 @@ for (let i = 0; i < data.length; i++) {
 picturesElement.appendChild(fragment);
 
 picturesElement.addEventListener('click', createBigImage);
+bigPictureCancelButtonElement.addEventListener('click', () => {
+
+});
